@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="b">
+
+<div class="container">
+
+<h1>HTML Quiz</h1>
+
+<h3>1. What does HTML stand for?</h3>
+<input type="radio" name="q1" value="0"> High Text Machine Language<br>
+<input type="radio" name="q1" value="1"> Hyper Text Markup Language<br>
+<input type="radio" name="q1" value="0"> Hyper Tool Markup Language<br>
+
+<br>
+
+<h3>2. Which tag is used for headings?</h3>
+<input type="radio" name="q2" value="0"> &lt;p&gt;<br>
+<input type="radio" name="q2" value="1"> &lt;h1&gt;<br>
+<input type="radio" name="q2" value="0"> &lt;div&gt;<br>
+
+<br>
+
+<h3>3. Which tag is used to insert image?</h3>
+<input type="radio" name="q3" value="1"> &lt;img&gt;<br>
+<input type="radio" name="q3" value="0"> &lt;pic&gt;<br>
+<input type="radio" name="q3" value="0"> &lt;image&gt;<br>
+
+<br><br>
+
+<button onclick="check()">Submit Quiz</button>
+
+</div>
+
+<script>
+function check(){
+let correct = 0;
+let answers = document.querySelectorAll("input[type=radio]:checked");
+
+answers.forEach((ans)=>{
+correct += Number(ans.value);
+});
+
+let total = 3;
+let wrong = total - correct;
+
+localStorage.setItem("correct",correct);
+localStorage.setItem("wrong",wrong);
+localStorage.setItem("total",total);
+
+window.location="result.html";
+}
+</script>
+
+</body>
+</html>

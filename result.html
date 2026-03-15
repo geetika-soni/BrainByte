@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Result</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="a">
+
+<div class="container">
+
+<h1>Quiz Result</h1>
+
+<p>Correct Answers: <span id="correct"></span></p>
+<p>Wrong Answers: <span id="wrong"></span></p>
+<p>Total Questions: <span id="total"></span></p>
+
+<h2>Score: <span id="score"></span>%</h2>
+
+<br>
+
+<a href="category.html">
+<button>Try Another Quiz</button>
+</a>
+
+</div>
+
+<script>
+
+let correct = localStorage.getItem("correct");
+let wrong = localStorage.getItem("wrong");
+let total = localStorage.getItem("total");
+
+document.getElementById("correct").innerText = correct;
+document.getElementById("wrong").innerText = wrong;
+document.getElementById("total").innerText = total;
+
+let score = (correct/total)*100;
+
+document.getElementById("score").innerText = score;
+
+</script>
+
+</body>
+</html>
