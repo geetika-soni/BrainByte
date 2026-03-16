@@ -37,24 +37,31 @@
 <a href="category.html">Back to category page</a>
 </p>
 </div>
-
 <script>
 function check(){
-let correct = 0;
-let answers = document.querySelectorAll("input[type=radio]:checked");
+    let total = 3;
+    let answers = document.querySelectorAll("input[type=radio]:checked");
 
-answers.forEach((ans)=>{
-correct += Number(ans.value);
-});
+    // VALIDATION: Check if all questions are answered
+    if (answers.length < total) {
+        alert("attempt all questions before submitting!");
+        return; // Stops the function here so it doesn't redirect
+    }
 
-let total = 3;
-let wrong = total - correct;
+    let correct = 0;
+    answers.forEach((ans)=>{
+        correct += Number(ans.value);
+    });
 
-localStorage.setItem("correct",correct);
-localStorage.setItem("wrong",wrong);
-localStorage.setItem("total",total);
+    let wrong = total - correct;
 
-window.location="result.html";
+    // Saving to Local Storage
+    localStorage.setItem("correct", correct);
+    localStorage.setItem("wrong", wrong);
+    localStorage.setItem("total", total);
+
+    // Redirect to Result Page
+    window.location = "result.html";
 }
 </script>
 
