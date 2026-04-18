@@ -1,51 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Computer Basics Quiz</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Basics Quiz - BrainByte</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="b">
 
 <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h1 style="margin: 0; font-size: 2.5rem;">Computer Basics</h1>
+        <div style="background: rgba(139, 92, 246, 0.2); padding: 5px 15px; border-radius: 20px; color: var(--primary); font-weight: 600;">3 Questions</div>
+    </div>
 
-<h1>Computer Basics</h1>
+    <div class="question-block">
+        <h3>1. Brain of computer?</h3>
+        <div class="quiz-options">
+            <label class="option-label">
+                <input type="radio" name="q1" value="1">
+                <div class="radio-custom"></div>
+                CPU
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q1" value="0">
+                <div class="radio-custom"></div>
+                RAM
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q1" value="0">
+                <div class="radio-custom"></div>
+                Hard Disk
+            </label>
+        </div>
+    </div>
 
-<h3>1. Brain of computer?</h3>
-<input type="radio" name="q1" value="1"> CPU<br>
-<input type="radio" name="q1" value="0"> RAM<br>
-<input type="radio" name="q1" value="0"> Hard Disk<br>
+    <div class="question-block">
+        <h3>2. Full form of CPU?</h3>
+        <div class="quiz-options">
+            <label class="option-label">
+                <input type="radio" name="q2" value="1">
+                <div class="radio-custom"></div>
+                Central Processing Unit
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q2" value="0">
+                <div class="radio-custom"></div>
+                Computer Processing Unit
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q2" value="0">
+                <div class="radio-custom"></div>
+                Central Program Unit
+            </label>
+        </div>
+    </div>
 
-<br>
+    <div class="question-block">
+        <h3>3. Temporary memory?</h3>
+        <div class="quiz-options">
+            <label class="option-label">
+                <input type="radio" name="q3" value="1">
+                <div class="radio-custom"></div>
+                RAM
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q3" value="0">
+                <div class="radio-custom"></div>
+                ROM
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q3" value="0">
+                <div class="radio-custom"></div>
+                Hard Disk
+            </label>
+        </div>
+    </div>
 
-<h3>2. Full form of CPU?</h3>
-<input type="radio" name="q2" value="1"> Central Processing Unit<br>
-<input type="radio" name="q2" value="0"> Computer Processing Unit<br>
-<input type="radio" name="q2" value="0"> Central Program Unit<br>
-
-<br>
-
-<h3>3. Temporary memory?</h3>
-<input type="radio" name="q3" value="1"> RAM<br>
-<input type="radio" name="q3" value="0"> ROM<br>
-<input type="radio" name="q3" value="0"> Hard Disk<br>
-
-<br><br>
-
-<button onclick="check()">Submit Quiz</button>
-<p align="right">
-<a href="category.html">Back to category page</a>
-</p>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px;">
+        <a href="category.html" style="color: var(--text-muted);">← Back to categories</a>
+        <button onclick="check()" style="margin: 0;">Submit Quiz</button>
+    </div>
 </div>
+
 <script>
 function check(){
     let total = 3;
     let answers = document.querySelectorAll("input[type=radio]:checked");
 
-    // VALIDATION: Check if all questions are answered
     if (answers.length < total) {
-        alert("attempt all questions before submitting!");
-        return; // Stops the function here so it doesn't redirect
+        alert("Please answer all questions before submitting!");
+        return;
     }
 
     let correct = 0;
@@ -55,12 +100,10 @@ function check(){
 
     let wrong = total - correct;
 
-    // Saving to Local Storage
     localStorage.setItem("correct", correct);
     localStorage.setItem("wrong", wrong);
     localStorage.setItem("total", total);
 
-    // Redirect to Result Page
     window.location = "result.html";
 }
 </script>

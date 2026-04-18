@@ -1,44 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Result</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result - BrainByte</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="a">
 
-<div class="container">
+<div class="container" style="max-width: 600px;">
+    <h1>Quiz Complete!</h1>
+    
+    <div class="score-circle" id="scoreCircle" style="--score: 0;">
+        <div class="score-text">
+            <span id="scoreDisplay">0</span>%
+            <span>Final Score</span>
+        </div>
+    </div>
 
-<h1>Quiz Result</h1>
+    <div class="result-stats">
+        <div class="stat-box">
+            <span class="label">Correct</span>
+            <span class="value correct" id="correct">0</span>
+        </div>
+        <div class="stat-box">
+            <span class="label">Wrong</span>
+            <span class="value wrong" id="wrong">0</span>
+        </div>
+        <div class="stat-box">
+            <span class="label">Total</span>
+            <span class="value total" id="total">0</span>
+        </div>
+    </div>
 
-<p>Correct Answers: <span id="correct"></span></p>
-<p>Wrong Answers: <span id="wrong"></span></p>
-<p>Total Questions: <span id="total"></span></p>
-
-<h2>Score: <span id="score"></span>%</h2>
-
-<br>
-
-<a href="category.html">
-<button>Try Another Quiz</button>
-</a>
-
+    <div style="margin-top: 30px;">
+        <a href="category.html">
+            <button>Try Another Quiz</button>
+        </a>
+        <br>
+        <a href="index.html" style="display: inline-block; margin-top: 20px; color: var(--text-muted);">Back to Home</a>
+    </div>
 </div>
 
 <script>
+window.onload = () => {
+    let correct = localStorage.getItem("correct") || 0;
+    let wrong = localStorage.getItem("wrong") || 0;
+    let total = localStorage.getItem("total") || 0;
 
-let correct = localStorage.getItem("correct");
-let wrong = localStorage.getItem("wrong");
-let total = localStorage.getItem("total");
+    document.getElementById("correct").innerText = correct;
+    document.getElementById("wrong").innerText = wrong;
+    document.getElementById("total").innerText = total;
 
-document.getElementById("correct").innerText = correct;
-document.getElementById("wrong").innerText = wrong;
-document.getElementById("total").innerText = total;
+    let score = total > 0 ? (correct / total) * 100 : 0;
+    let scoreRounded = Math.round(score);
 
-let score = (correct/total)*100;
+    // Animate score counter
+    let currentScore = 0;
+    let scoreDisplay = document.getElementById("scoreDisplay");
+    let scoreCircle = document.getElementById("scoreCircle");
 
-document.getElementById("score").innerText = score;
-
+    let interval = setInterval(() => {
+        if(currentScore >= scoreRounded) {
+            clearInterval(interval);
+            scoreDisplay.innerText = scoreRounded;
+            scoreCircle.style.setProperty('--score', scoreRounded);
+        } else {
+            currentScore++;
+            scoreDisplay.innerText = currentScore;
+            scoreCircle.style.setProperty('--score', currentScore);
+        }
+    }, 20); // Speed of animation
+};
 </script>
 
 </body>
