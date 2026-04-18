@@ -1,60 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>JavaScript Quiz</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Quiz - BrainByte</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="b">
 
 <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h1 style="margin: 0; font-size: 2.5rem;">JavaScript Quiz</h1>
+        <div style="background: rgba(139, 92, 246, 0.2); padding: 5px 15px; border-radius: 20px; color: var(--primary); font-weight: 600;">3 Questions</div>
+    </div>
 
-<h1>JavaScript Quiz</h1>
+    <div class="question-block">
+        <h3>1. JavaScript is used for?</h3>
+        <div class="quiz-options">
+            <label class="option-label">
+                <input type="radio" name="q1" value="0">
+                <div class="radio-custom"></div>
+                Styling
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q1" value="1">
+                <div class="radio-custom"></div>
+                Interactivity
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q1" value="0">
+                <div class="radio-custom"></div>
+                Database
+            </label>
+        </div>
+    </div>
 
-<h3>1. JavaScript is used for?</h3>
-<input type="radio" name="q1" value="0"> Styling<br>
-<input type="radio" name="q1" value="1"> Interactivity<br>
-<input type="radio" name="q1" value="0"> Database<br>
+    <div class="question-block">
+        <h3>2. Which symbol is used for comments?</h3>
+        <div class="quiz-options">
+            <label class="option-label">
+                <input type="radio" name="q2" value="1">
+                <div class="radio-custom"></div>
+                //
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q2" value="0">
+                <div class="radio-custom"></div>
+                ##
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q2" value="0">
+                <div class="radio-custom"></div>
+                **
+            </label>
+        </div>
+    </div>
 
-<br>
+    <div class="question-block">
+        <h3>3. Which keyword declares a variable?</h3>
+        <div class="quiz-options">
+            <label class="option-label">
+                <input type="radio" name="q3" value="1">
+                <div class="radio-custom"></div>
+                var
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q3" value="0">
+                <div class="radio-custom"></div>
+                int
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q3" value="0">
+                <div class="radio-custom"></div>
+                string
+            </label>
+        </div>
+    </div>
 
-<h3>2. Which symbol is used for comments?</h3>
-<input type="radio" name="q2" value="1"> //<br>
-<input type="radio" name="q2" value="0"> ##<br>
-<input type="radio" name="q2" value="0"> **<br>
-
-<br>
-
-<h3>3. Which keyword declares a variable?</h3>
-<input type="radio" name="q3" value="1"> var<br>
-<input type="radio" name="q3" value="0"> int<br>
-<input type="radio" name="q3" value="0"> string<br>
-
-<br><br>
-
-<button onclick="check()">Submit Quiz</button>
-<p align="right">
-<a href="category.html">Back to category page</a>
-</p>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px;">
+        <a href="category.html" style="color: var(--text-muted);">← Back to categories</a>
+        <button onclick="check()" style="margin: 0;">Submit Quiz</button>
+    </div>
 </div>
 
 <script>
 function check(){
-let correct = 0;
-let answers = document.querySelectorAll("input[type=radio]:checked");
+    let total = 3;
+    let answers = document.querySelectorAll("input[type=radio]:checked");
 
-answers.forEach((ans)=>{
-correct += Number(ans.value);
-});
+    if (answers.length < total) {
+        alert("Please answer all questions before submitting!");
+        return;
+    }
 
-let total = 3;
-let wrong = total - correct;
+    let correct = 0;
+    answers.forEach((ans)=>{
+        correct += Number(ans.value);
+    });
 
-localStorage.setItem("correct",correct);
-localStorage.setItem("wrong",wrong);
-localStorage.setItem("total",total);
+    let wrong = total - correct;
 
-window.location="result.html";
+    localStorage.setItem("correct", correct);
+    localStorage.setItem("wrong", wrong);
+    localStorage.setItem("total", total);
+
+    window.location = "result.html";
 }
 </script>
 

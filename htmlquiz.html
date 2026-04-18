@@ -1,60 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>HTML Quiz</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Quiz - BrainByte</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="b">
 
 <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h1 style="margin: 0; font-size: 2.5rem;">HTML Quiz</h1>
+        <div style="background: rgba(139, 92, 246, 0.2); padding: 5px 15px; border-radius: 20px; color: var(--primary); font-weight: 600;">3 Questions</div>
+    </div>
 
-<h1>HTML Quiz</h1>
+    <div class="question-block">
+        <h3>1. What does HTML stand for?</h3>
+        <div class="quiz-options">
+            <label class="option-label">
+                <input type="radio" name="q1" value="0">
+                <div class="radio-custom"></div>
+                High Text Machine Language
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q1" value="1">
+                <div class="radio-custom"></div>
+                Hyper Text Markup Language
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q1" value="0">
+                <div class="radio-custom"></div>
+                Hyper Tool Markup Language
+            </label>
+        </div>
+    </div>
 
-<h3>1. What does HTML stand for?</h3>
-<input type="radio" name="q1" value="0"> High Text Machine Language<br>
-<input type="radio" name="q1" value="1"> Hyper Text Markup Language<br>
-<input type="radio" name="q1" value="0"> Hyper Tool Markup Language<br>
+    <div class="question-block">
+        <h3>2. Which tag is used for headings?</h3>
+        <div class="quiz-options">
+            <label class="option-label">
+                <input type="radio" name="q2" value="0">
+                <div class="radio-custom"></div>
+                &lt;p&gt;
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q2" value="1">
+                <div class="radio-custom"></div>
+                &lt;h1&gt;
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q2" value="0">
+                <div class="radio-custom"></div>
+                &lt;div&gt;
+            </label>
+        </div>
+    </div>
 
-<br>
+    <div class="question-block">
+        <h3>3. Which tag is used to insert an image?</h3>
+        <div class="quiz-options">
+            <label class="option-label">
+                <input type="radio" name="q3" value="1">
+                <div class="radio-custom"></div>
+                &lt;img&gt;
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q3" value="0">
+                <div class="radio-custom"></div>
+                &lt;pic&gt;
+            </label>
+            <label class="option-label">
+                <input type="radio" name="q3" value="0">
+                <div class="radio-custom"></div>
+                &lt;image&gt;
+            </label>
+        </div>
+    </div>
 
-<h3>2. Which tag is used for headings?</h3>
-<input type="radio" name="q2" value="0"> &lt;p&gt;<br>
-<input type="radio" name="q2" value="1"> &lt;h1&gt;<br>
-<input type="radio" name="q2" value="0"> &lt;div&gt;<br>
-
-<br>
-
-<h3>3. Which tag is used to insert image?</h3>
-<input type="radio" name="q3" value="1"> &lt;img&gt;<br>
-<input type="radio" name="q3" value="0"> &lt;pic&gt;<br>
-<input type="radio" name="q3" value="0"> &lt;image&gt;<br>
-
-<br><br>
-
-<button onclick="check()">Submit Quiz</button>
-<p align="right">
-<a href="category.html">Back to category page</a>
-</p>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px;">
+        <a href="category.html" style="color: var(--text-muted);">← Back to categories</a>
+        <button onclick="check()" style="margin: 0;">Submit Quiz</button>
+    </div>
 </div>
 
 <script>
 function check(){
-let correct = 0;
-let answers = document.querySelectorAll("input[type=radio]:checked");
+    let total = 3;
+    let answers = document.querySelectorAll("input[type=radio]:checked");
 
-answers.forEach((ans)=>{
-correct += Number(ans.value);
-});
+    if (answers.length < total) {
+        alert("Please answer all questions before submitting!");
+        return;
+    }
 
-let total = 3;
-let wrong = total - correct;
+    let correct = 0;
+    answers.forEach((ans)=>{
+        correct += Number(ans.value);
+    });
 
-localStorage.setItem("correct",correct);
-localStorage.setItem("wrong",wrong);
-localStorage.setItem("total",total);
+    let wrong = total - correct;
 
-window.location="result.html";
+    localStorage.setItem("correct", correct);
+    localStorage.setItem("wrong", wrong);
+    localStorage.setItem("total", total);
+
+    window.location = "result.html";
 }
 </script>
 
